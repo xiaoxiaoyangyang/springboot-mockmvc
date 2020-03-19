@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.springbootmockmvc.mapper.UserBeanMapper">
+    <resultMap id="UserEntity" type="com.example.springbootmockmvc.entity.UserBean">
+        <id column="id" property="id" jdbcType="BIGINT"></id>
+        <result column="name" property="name" jdbcType="VARCHAR"></result>
+        <result column="age" property="age" jdbcType="INTEGER"></result>
+        <result column="email" property="email"></result>
+    </resultMap>
+
+    <sql id="user">
+        id,name,age,email
+    </sql>
+
+    <select id="selectOne" resultMap="UserEntity">
+        select <include refid="user"></include>
+        from user
+        where id = #{id}
+    </select>
+
+</mapper>
